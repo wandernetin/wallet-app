@@ -1,4 +1,4 @@
-package com.wander.wallet.entity;
+package com.wander.wallet.domain;
 
 import javax.persistence.*;
 
@@ -18,6 +18,9 @@ public class Expense {
 
     @Column
     private String category;
+
+
+
 
     public Long getId() {
         return id;

@@ -1,21 +1,20 @@
-package com.wander.wallet.repository;
+package com.wander.wallet.service.expense;
 
-import com.wander.wallet.entity.Expense;
-import com.wander.wallet.service.ExpenseService;
+import com.wander.wallet.domain.Expense;
+import com.wander.wallet.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
 
+    @Autowired
     private ExpenseRepository expenseRepository;
 
-    @Autowired
-    public ExpenseServiceImpl (ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
-    }
+//    @Autowired
+//    public ExpenseServiceImpl (ExpenseRepository expenseRepository) {
+//        this.expenseRepository = expenseRepository;
+//    }
 
     @Override
     public Iterable<Expense> list() {
@@ -28,17 +27,17 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public Expense read(long id) {
+    public Expense read(Long id) {
         return expenseRepository.findOne(id);
     }
 
     @Override
-    public Expense update(long id, Expense expense) {
+    public Expense update(Long id, Expense expense) {
         return expenseRepository.save(expense);
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         expenseRepository.delete(id);
     }
 }
