@@ -11,11 +11,11 @@ class ExpenseList extends Component {
     
     rederRows() {
 		const list = this.props.list || []
-		return list.map(e => (
-			<tr key={e._id}>
-				<td>{e.description}</td>
-				<td>{e.value}</td>
-				<td>{e.category}</td>
+		return list.map(bc => (
+			<tr key={bc._id}>
+				<td>{bc.description}</td>
+				<td>{bc.value}</td>
+				<td>{bc.category}</td>
 				<td>
 					<button className='btn btn-warning' onClick={() => this.props.showUpdate(bc)}>
 						<i className='fa fa-pencil'></i>

@@ -8,6 +8,7 @@ class TabHeader extends Component {
         render() {
                 const selected = this.props.tab.selected === this.props.target
                 const visible = this.props.tab.visible[this.props.target]
+                console.log(visible)
                 return (
                         <If test={visible}>
                                 <li className={selected ? 'active' : ''}>

@@ -13,14 +13,15 @@ import tabsHeader from '../common/tab/tabsHeader';
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from '../common/tab/tabContent'
 
-import {init, create, update, remove } from './expenseActions'
+import {init1, create, update, remove } from './expenseActions'
 
 
 
 class Expense extends Component {
 
-    componentWillMount() {
-		init()
+	componentWillMount() {
+		console.log('entrou')
+		this.props.init1()
 	}
 
     render() {
@@ -33,6 +34,7 @@ class Expense extends Component {
 							<TabHeader label='Update' icon='pencil' target='tabUpdate' />
 							<TabHeader label='Delete' icon='trash-o' target='tabDelete' />
 						</TabsHeader>
+						
 						<TabsContent>
 							<TabContent id='tabList'>
                                 <List />
@@ -50,11 +52,12 @@ class Expense extends Component {
 									submitClass='danger' />
 							</TabContent>
 						</TabsContent>
-					</Tabs>
+
+				</Tabs>
             </div>
         )
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create, update, remove, init }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({init1, selectTab, showTabs, create, update, remove}, dispatch)
 export default connect(null, mapDispatchToProps)(Expense)

@@ -9,10 +9,11 @@ const INITAL_VALUES = {
 }
 
 
-export function init() {
+export function init1() {
+        console.log("pass")
         return [
                 showTabs('tabList', 'tabCreate'),
-                selectTab('tabCreate'),
+                selectTab('tabList'),
                 getList(),
                 initialize('expenseForm', INITAL_VALUES)
         ]
@@ -27,12 +28,14 @@ export function getList() {
 }
 
 function submit (values, method) {
+        console.log("salvando " + method)
         return dispatch => {
                 const id = values._id ? values._id : ''
+                console.log(values)
                 axios[method](`${BASE_URL}/expense/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')
-                                dispatch(init())
+                                dispatch(init1())
                         })
                         .catch(e => {
                                 e.response.data.errors.forEach(error => 
