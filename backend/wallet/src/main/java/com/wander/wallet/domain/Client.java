@@ -28,8 +28,6 @@ public class Client {
     @Column
     private TypeWork typeWork;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
-    private List<Job> jobsList;
 
     public int getIdClient() {
         return idClient;
@@ -77,14 +75,5 @@ public class Client {
 
     public void setTypeWork(TypeWork typeWork) {
         this.typeWork = typeWork;
-    }
-
-    @JsonIgnore
-    public List<Job> getJobsList() {
-        return jobsList;
-    }
-
-    public void setJobsList(List<Job> jobsList) {
-        this.jobsList = jobsList;
     }
 }

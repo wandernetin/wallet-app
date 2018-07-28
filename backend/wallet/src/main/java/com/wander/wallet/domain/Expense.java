@@ -17,10 +17,7 @@ public class Expense {
     private Double value;
 
     @Column
-    private String category;
-
-
-
+    private CategoryEnum category;
 
     public Long getId() {
         return id;
@@ -46,11 +43,11 @@ public class Expense {
         this.value = value;
     }
 
-    public String getCategory() {
+    public CategoryEnum getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryEnum category) {
         this.category = category;
     }
 

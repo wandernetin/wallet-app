@@ -11,10 +11,6 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-//    @Autowired
-//    public ExpenseServiceImpl (ExpenseRepository expenseRepository) {
-//        this.expenseRepository = expenseRepository;
-//    }
 
     @Override
     public Iterable<Expense> list() {

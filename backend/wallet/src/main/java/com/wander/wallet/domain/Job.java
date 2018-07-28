@@ -54,4 +54,12 @@ public class Job {
     public void setQtHour(Double qtHour) {
         this.qtHour = qtHour;
     }
+
+    public Double getTotalJob () {
+        if (getClient() == null || getQtHour() == 0) {
+            return 0.0;
+        } else {
+            return getClient().getHourValue() * getQtHour();
+        }
+    }
 }
