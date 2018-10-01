@@ -2,6 +2,7 @@ package com.wander.wallet.domain;
 
 public enum CategoryEnum {
 
+    RENT (0, "Rent"),
     TRANSPORT (1, "Transport"),
     EATING_OUT(2, "Eating Out"),
     SHOPPING(3, "Shopping"),
@@ -10,7 +11,8 @@ public enum CategoryEnum {
     INTERNET(6, "Internet Bill"),
     EDUCATION(7, "Education"),
     TRAVEL(8, "Travel"),
-    JOBS(9, "Jobs");
+    JOBS(9, "Jobs"),
+    CAR(10, "Car");
 
     private int id;
 
