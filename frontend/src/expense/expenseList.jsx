@@ -16,6 +16,8 @@ class ExpenseList extends Component {
 				<td>{bc.description}</td>
 				<td>{bc.value}</td>
 				<td>{bc.category}</td>
+				<td>{bc.periodicity}</td>
+				<td>{bc.date}</td>
 				<td>
 					<button className='btn btn-warning' onClick={() => this.props.showUpdate(bc)}>
 						<i className='fa fa-pencil'></i>
@@ -37,6 +39,9 @@ class ExpenseList extends Component {
 							<th>Description</th>
 							<th>Value</th>
 							<th>Category</th>
+							<th>Periodicity</th>
+							<th>Date</th>
+							
 							<th className='tab-actions'> Actions </th>
 						</tr>
 					</thead>

@@ -37,7 +37,9 @@ function submit (values, method) {
                                 toastr.success('Sucess', 'Done!')
                                 dispatch(init1())
                         })
-                        .catch(e => {
+                        .catch( 
+                                e => {
+                                console.log(e.response.data.errors)  
                                 e.response.data.errors.forEach(error => 
                                         toastr.error('Error', error))
                                 
