@@ -9,19 +9,20 @@ const INITAL_VALUES = {
 }
 
 
-export function init1() {
+export function init() {
         return [
                 showTabs('tabList', 'tabCreate'),
                 selectTab('tabList'),
                 getList(),
-                initialize('expenseForm', INITAL_VALUES)
+                initialize('clientForm', INITAL_VALUES)
         ]
 }
 
 export function getList() {
-        const request = axios.get(`${BASE_URL}/expense/`)
+        console.log('aqui')
+        const request = axios.get(`${BASE_URL}/client/`)
         return {
-                type: 'EXPENSES_FETCHED',
+                type: 'CLIENTS_FETCHED',
                 payload: request
         }        
 }
@@ -29,10 +30,10 @@ export function getList() {
 function submit (values, method) {
         return dispatch => {
                 const id = values._id ? values._id : ''
-                axios[method](`${BASE_URL}/expense/${id}`, values)
+                axios[method](`${BASE_URL}/client/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')
-                                dispatch(init1())
+                                dispatch(init())
                         })
                         .catch( 
                                 e => {
@@ -55,19 +56,19 @@ export function remove(values) {
         return submit(values, 'delete')
 }
 
-export function showUpdate(expense) {
+export function showUpdate(client) {
         return [
                 showTabs('tabUpdate'),
                 selectTab('tabUpdate'),
-                initialize('expenseForm', expense)
+                initialize('clientForm', client)
         ]
 }
 
 //to fix
-export function showDelete(expense) {
+export function showDelete(client) {
         return [
                 showTabs('tabDelete'),
                 selectTab('tabDelete'),
-                initialize('expenseForm', expense)
+                initialize('clientForm', client)
         ]
 }

@@ -1,84 +1,57 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { selectTab, showTabs } from '../common/tab/tabActions'
 
-import PageHeader from '../template/pageHeader'
-import ClientsForm from './clientsForm'
-import ClientsList from './clientsList'
+import Form from './clientsForm'
+import List from './clientsList'
+import Tabs from '../common/tab/tabs'
+import TabsHeader from '../common/tab/tabsHeader'
+import TabsContent from '../common/tab/tabsContent'
+import TabHeader from '../common/tab/tabHeader'
+import TabContent from '../common/tab/tabContent'
 
-const URL = 'http://localhost:8080/client/'
-
-export default class Todo extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { nameClient: '', hourValue: '', hourTax: '', hourFee: '', typeWork: '',
-                    list: [] }
-    this.handleAdd = this.handleAdd.bind(this)
-    //this.handleRemove = this.handleRemove.bind(this)
-    //this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
-    //this.handleMarkAsPending = this.handleMarkAsPending.bind(this)
-    //this.handleSearch = this.handleSearch.bind(this)
-    //this.handleClear = this.handleClear.bind(this)
-
-    this.refresh()
-  }
-
-  refresh(description = '') {
-    console.log("Tesr")
-    //const search = description ? `&description__regex=/${description}/` : ''
-    axios.get(`${URL}?sort=-createdAt`)
-      .then(resp => this.setState({...this.state, list: resp.data}))
-    console.log(this.state.list)
-  }
-
- /* handleSearch() {
-    this.refresh(this.state.description)
-  }
-
-  handleRemove(todo) {
-    axios.delete(`${URL}/${todo._id}`)
-      .then(resp => this.refresh(this.state.description))
-  }*/
+import { init, create, update, remove } from './clientActions'
 
 
-  handleAdd() {
-    const payload = {
-      nameClient: this.state.nameClient,
-      hourValue: this.state.hourValue,
-      hourTax: this.state.hourTax,
-      hourFee:  this.state.hourFee,
-      typeWork:  this.state.typeWork
-    }
-    axios.post(URL, payload)
-      .then(resp => this.refresh())
-  }
+class Client extends Component {
 
-  /*handleMarkAsDone(todo) {
-    axios.put(`${URL}/${todo._id}`, {...todo, done: true })
-      .then(resp => this.refresh(this.state.description))   
-  }
 
-  handleMarkAsPending(todo) {
-    axios.put(`${URL}/${todo._id}`, {...todo, done: false })
-      .then(resp => this.refresh(this.state.description))   
-  }*/
-
-  handleClear() {
-    this.refresh()
-  }
-  
   render() {
     return (
       <div>
-        <PageHeader name='Clients' small='Register'/>
-        <ClientsForm 
-         
-          handleAdd={this.handleAdd}
-          handleSearch={this.handleSearch}
-          handleClear={this.handleClear}/>
-        <ClientsList 
-          list={this.state.list}
-          />
+        <Tabs>
+          <TabsHeader>
+            <TabHeader label='List' icon='bars' target='tabList' />
+            <TabHeader label='Create' icon='plus' target='tabCreate' />
+            <TabHeader label='Update' icon='pencil' target='tabUpdate' />
+            <TabHeader label='Delete' icon='trash-o' target='tabDelete' />
+          </TabsHeader>
+
+          <TabsContent>
+            <TabContent id='tabList'>
+              <List />
+            </TabContent>
+            <TabContent id='tabCreate'>
+              <Form onSubmit={this.props.create} submitLabel='Create'
+                submitClass='primary' />
+            </TabContent>
+            <TabContent id='tabUpdate'>
+              <Form onSubmit={this.props.update} submitLabel='Update'
+                submitClass='info' />
+            </TabContent>
+            <TabContent id='tabDelete'>
+              <Form onSubmit={this.props.remove} readOnly={true} submitLabel='Delete'
+                submitClass='danger' />
+            </TabContent>
+          </TabsContent>
+
+        </Tabs>
       </div>
     )
   }
 }
+
+
+const mapDispatchToProps = dispatch => bindActionCreators({ init, selectTab, showTabs, create, update, remove }, dispatch)
+export default connect(null, mapDispatchToProps)(Client)

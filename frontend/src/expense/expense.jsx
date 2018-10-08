@@ -20,7 +20,6 @@ import {init1, create, update, remove } from './expenseActions'
 class Expense extends Component {
 
 	componentWillMount() {
-		console.log('entrou')
 		this.props.init1()
 	}
 
