@@ -56,7 +56,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public String getTotalFromExpensesRecurrentForThisWeek() {
+    public Double getTotalFromExpensesRecurrentForThisWeek() {
         Double sum = 0.0;
         for (Expense ex : expenseRepository.findExpensesRecurrent()){
             if(ex.getPeriodicity().equals(PeriodicityEnum.WEEKLY)) {
@@ -68,6 +68,6 @@ public class ExpenseServiceImpl implements ExpenseService {
             }
         }
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        return decimalFormat.format(sum);
+        return sum;
     }
 }

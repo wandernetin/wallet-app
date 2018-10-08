@@ -59,7 +59,14 @@ public class Job {
         if (getClient() == null || getQtHour() == 0) {
             return 0.0;
         } else {
-            return getClient().getHourValue() * getQtHour();
+            if (getClient().getTypeWork().equals(TypeWork.TFN)) {
+                return (getClient().getHourValue() * getQtHour()) -
+                        (getClient().getHourTax() * getQtHour());
+            } else {
+                return (getClient().getHourValue() * getQtHour()) -
+                        (getClient().getHourFee() * getQtHour());
+            }
+
         }
     }
 }

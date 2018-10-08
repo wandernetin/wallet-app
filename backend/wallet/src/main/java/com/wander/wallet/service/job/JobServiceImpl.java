@@ -2,8 +2,13 @@ package com.wander.wallet.service.job;
 
 import com.wander.wallet.domain.Job;
 import com.wander.wallet.repository.JobRepository;
+import com.wander.wallet.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.DecimalFormat;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -34,5 +39,18 @@ public class JobServiceImpl implements JobService {
     @Override
     public void delete(Integer id) {
         jobRepository.delete(id);
+    }
+
+    @Override
+    public Double findJobsFromThisWeek() {
+
+        Date firstDate = DateUtil.getFirstDayOfThisWeek();
+        Date lastDate = DateUtil.getLastDayOfThisWeek();
+
+        Double total = 0.0;
+        for(Job job : jobRepository.findJobsByDates(firstDate, lastDate)){
+            total += job.getTotalJob();
+        }
+        return total;
     }
 }

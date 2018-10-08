@@ -9,7 +9,6 @@ public interface ExpenseService extends GenericService <Expense, Long> {
 
     Double totalValueForThisWeek();
 
-    String getTotalFromExpensesRecurrentForThisWeek();
-
+    Double getTotalFromExpensesRecurrentForThisWeek();
 
 }

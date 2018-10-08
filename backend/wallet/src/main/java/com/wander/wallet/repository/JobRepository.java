@@ -14,4 +14,7 @@ public interface JobRepository extends CrudRepository<Job, Integer>{
     @Query("from Job j where j.client = :client and j.date between :iniDate and :end")
     public List<Job> findByClientBetweenDates(@Param("client") Client client, @Param("iniDate") Date initial, @Param("end") Date end);
 
+    @Query("from Job j where j.date between :iniDate and :end")
+    public List<Job> findJobsByDates(@Param("iniDate") Date start, @Param("end") Date finish);
+
 }
