@@ -5,6 +5,7 @@ import TabReducer from '../common/tab/tabReducer'
 import ExpenseReducer from '../expense/expenseReducer'
 import DashboardReducer from '../dashboard/dashboardReducer'
 import ClientReducer from '../clients/clientReducer'
+import JobReducer from '../job/jobReducer'
 
 
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
         form: formReducer,
         toastr: toastReducer,
         expense: ExpenseReducer,
-        client: ClientReducer
+        client: ClientReducer,
+        job: JobReducer
 })
 
 export default rootReducer

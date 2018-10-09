@@ -5,7 +5,7 @@ import {showTabs, selectTab} from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:8080'
 const INITAL_VALUES = {
-        expenses: [{}]
+        jobs: [{}]
 }
 
 
@@ -13,15 +13,23 @@ export function init() {
         return [
                 showTabs('tabList', 'tabCreate'),
                 selectTab('tabList'),
-                getList(),
-                initialize('clientForm', INITAL_VALUES)
+                getListJobs(),
+                initialize('jobForm', INITAL_VALUES)
         ]
 }
 
-export function getList() {
-        const request = axios.get(`${BASE_URL}/client/`)
+export function getListClients() {
+    const request = axios.get(`${BASE_URL}/client/`)
+    return {
+            type: 'CLIENTS_JOBS_FETCHED',
+            payload: request
+    }        
+}
+
+export function getListJobs() {
+        const request = axios.get(`${BASE_URL}/job/`)
         return {
-                type: 'CLIENTS_FETCHED',
+                type: 'JOBS_FETCHED',
                 payload: request
         }        
 }
@@ -29,7 +37,7 @@ export function getList() {
 function submit (values, method) {
         return dispatch => {
                 const id = values._id ? values._id : ''
-                axios[method](`${BASE_URL}/client/${id}`, values)
+                axios[method](`${BASE_URL}/job/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')
                                 dispatch(init())
@@ -55,19 +63,19 @@ export function remove(values) {
         return submit(values, 'delete')
 }
 
-export function showUpdate(client) {
+export function showUpdate(job) {
         return [
                 showTabs('tabUpdate'),
                 selectTab('tabUpdate'),
-                initialize('clientForm', client)
+                initialize('jobForm', job)
         ]
 }
 
 //to fix
-export function showDelete(client) {
+export function showDelete(job) {
         return [
                 showTabs('tabDelete'),
                 selectTab('tabDelete'),
-                initialize('clientForm', client)
+                initialize('jobForm', job)
         ]
 }
