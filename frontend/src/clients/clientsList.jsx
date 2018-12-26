@@ -12,11 +12,8 @@ class ClientList extends Component {
     rederRows() {
 		const list = this.props.list || []
 		return list.map(c => (
-			<tr key={c._id}>
+			<tr key={c.idClient}>
 				<td>{c.nameClient}</td>
-				<td>{c.hourValue}</td>
-				<td>{c.hourFee}</td>
-				<td>{c.hourTax}</td>
 				<td>{c.typeWork}</td>
 				<td>
 					<button className='btn btn-warning' onClick={() => this.props.showUpdate(c)}>

@@ -12,11 +12,10 @@ class JobList extends Component {
     rederRows() {
 		const list = this.props.list || []
 		return list.map(j => (
-			<tr key={j._id}>
+			<tr key={j.idJob}>
 				<td>{j.date}</td>
 				<td>{j.qtHour}</td>
-				<td>{j.client.nameClient}</td>
-				<td>{j.totalJob}</td>
+				<td>{j.totalReceived}</td>
 				<td>
 					<button className='btn btn-warning' onClick={() => this.props.showUpdate(j)}>
 						<i className='fa fa-pencil'></i>
@@ -37,7 +36,6 @@ class JobList extends Component {
 						<tr>
 							<th>Date</th>
 							<th>Qt Hour</th>
-							<th>Client</th>	
 							<th>Total Job</th>													
 							<th className='tab-actions'> Actions </th>
 						</tr>

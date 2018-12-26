@@ -15,12 +15,6 @@ class ClientForm extends Component {
 			 <div className='box-body'>
 					<Field name='nameClient' component={labelAndInput} readOnly={readOnly}
 						label='Name' cols='12 4' placeholder='Name' />
-					<Field name='hourValue' component={labelAndInput} readOnly={readOnly}
-						label='Hour Value' cols='12 4' placeholder='Hour Value' />
-					<Field name='hourFee' component={labelAndInput} readOnly={readOnly}
-						label='Hour Fee' cols='12 4' placeholder='Hour Fee' />
-					<Field name='hourTax' component={labelAndInput} readOnly={readOnly}
-						label='Hour Tax' cols='12 4' placeholder='Hour Tax' />
 					<Field name='typeWork' component= {labelAndSelect} readOnly={readOnly}
 												label='Type Work' cols='12 4' placeholder='Type Work'
 												options={[

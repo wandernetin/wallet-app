@@ -27,8 +27,9 @@ export function getList() {
 }
 
 function submit (values, method) {
+        console.log(values)
         return dispatch => {
-                const id = values._id ? values._id : ''
+                const id = values.id ? values.id : ''
                 axios[method](`${BASE_URL}/expense/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')

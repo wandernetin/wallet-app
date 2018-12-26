@@ -57,5 +57,8 @@ class Job extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+	job: state.job
+})
 const mapDispatchToProps = dispatch => bindActionCreators({init, selectTab, showTabs, create, update, remove}, dispatch)
-export default connect(null, mapDispatchToProps)(Job)
+export default connect(mapStateToProps, mapDispatchToProps)(Job)

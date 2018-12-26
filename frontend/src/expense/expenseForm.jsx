@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {reduxForm, Field, formValueSelector} from 'redux-form'
 import labelAndInput from '../common/form/labelAndInput'
+import labelAndDate from '../common/form/labelAndDate'
 import labelAndSelect from '../common/form/labelAndSelect'
 import {init} from './expenseActions'
 
@@ -36,7 +37,10 @@ class ExpenseForm extends Component {
  
                    
                     <Field name='date' component={labelAndInput} readOnly={readOnly}
-    						label='Date' cols='12 4' placeholder='Date' type='date' />
+    						label='Date' cols='12 4' placeholder='Date' />
+
+                    <Field name='dueDate' component={labelAndInput} readOnly={readOnly}
+    						label='Due Date' cols='12 4' placeholder='Due Date' />
 
                     <Field name='periodicity' component= {labelAndSelect} readOnly={readOnly}
                             label='Periodicity' cols='12 4' placeholder='Periodicity'

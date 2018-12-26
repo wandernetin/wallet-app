@@ -35,8 +35,9 @@ export function getListJobs() {
 }
 
 function submit (values, method) {
+        console.log(values)
         return dispatch => {
-                const id = values._id ? values._id : ''
+                const id = values.idJob ? values.idJob : ''
                 axios[method](`${BASE_URL}/job/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')
