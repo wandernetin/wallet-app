@@ -70,4 +70,16 @@ public class ExpenseServiceImpl implements ExpenseService {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         return sum;
     }
+
+    @Override
+    public Double getTotalFromThisMonth() {
+        Date firstDay = DateUtil.getFirstDayOfCurrentMonth();
+        Date lastDay = DateUtil.getLastDayOfCurrentMonth();
+
+        Double sum = 0.0;
+        for (Expense expense : expenseRepository.findExpensesBetweenDates(firstDay, lastDay)){
+            sum += expense.getValue();
+        }
+        return sum;
+    }
 }

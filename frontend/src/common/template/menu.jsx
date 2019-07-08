@@ -8,8 +8,7 @@ export default props => (
                 <MenuItem path='#' label='Dashboard' icon='dashboard' />
                 <MenuTree label='Register' icon='edit'>
                         <MenuItem path='#expense' label='Expenses' icon='usd' />
-                        <MenuItem path='#client' label='Clients' icon='male' />
-                        <MenuItem path='#job' label='Jobs' icon='wrench' />
+                        <MenuItem path='#income' label='Income' icon='money' />
                 </MenuTree>
         </ul>
 )

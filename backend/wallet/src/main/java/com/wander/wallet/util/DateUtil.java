@@ -1,5 +1,7 @@
 package com.wander.wallet.util;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,5 +28,20 @@ public class DateUtil {
 
         cal.set(Calendar.DAY_OF_WEEK, (cal.getFirstDayOfWeek() + 6));
         return cal.getTime();
+    }
+
+    public static Date getFirstDayOfCurrentMonth() {
+        LocalDate firstDay = LocalDate.now();
+        firstDay.withDayOfMonth(1);
+
+        return Date.from(firstDay.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public static Date getLastDayOfCurrentMonth() {
+
+        LocalDate lastDay = LocalDate.now();
+        lastDay.withDayOfMonth(Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+
+        return Date.from(lastDay.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 }

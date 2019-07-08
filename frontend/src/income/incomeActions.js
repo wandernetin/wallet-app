@@ -9,34 +9,31 @@ const INITAL_VALUES = {
 }
 
 
-export function init() {
+export function init1() {
         return [
                 showTabs('tabList', 'tabCreate'),
                 selectTab('tabList'),
                 getList(),
-                initialize('clientForm', INITAL_VALUES)
+                initialize('incomeForm', INITAL_VALUES)
         ]
 }
 
 export function getList() {
-        const request = axios.get(`${BASE_URL}/client/`)
+        const request = axios.get(`${BASE_URL}/income/`)
         return {
-                type: 'CLIENTS_FETCHED',
+                type: 'INCOMES_FETCHED',
                 payload: request
         }        
 }
 
 function submit (values, method) {
-        const id = values.idClient ? values.idClient : ''
-        console.log(`${BASE_URL}/client/${id}`)
-        console.log(id)
-        console.log(method)
+        console.log(values)
         return dispatch => {
-                
-                axios[method](`${BASE_URL}/client/${id}`, values)
+                const id = values.id ? values.id : ''
+                axios[method](`${BASE_URL}/income/${id}`, values)
                         .then(resp => {
                                 toastr.success('Sucess', 'Done!')
-                                dispatch(init())
+                                dispatch(init1())
                         })
                         .catch( 
                                 e => {
@@ -59,19 +56,19 @@ export function remove(values) {
         return submit(values, 'delete')
 }
 
-export function showUpdate(client) {
+export function showUpdate(income) {
         return [
                 showTabs('tabUpdate'),
                 selectTab('tabUpdate'),
-                initialize('clientForm', client)
+                initialize('incomeForm', income)
         ]
 }
 
 //to fix
-export function showDelete(client) {
+export function showDelete(income) {
         return [
                 showTabs('tabDelete'),
                 selectTab('tabDelete'),
-                initialize('clientForm', client)
+                initialize('incomeForm', income)
         ]
 }

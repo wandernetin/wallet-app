@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getList, showUpdate, showDelete } from './clientActions'
+import { getList, showUpdate, showDelete } from './incomeActions'
 
-class ClientList extends Component {
+class IncomeList extends Component {
 
 	componentWillMount() {
 		this.props.getList()
@@ -11,15 +11,15 @@ class ClientList extends Component {
     
     rederRows() {
 		const list = this.props.list || []
-		return list.map(c => (
-			<tr key={c.idClient}>
-				<td>{c.nameClient}</td>
-				<td>{c.typeWork}</td>
+		return list.map(i => (
+			<tr key={i.id}>
+				<td>{i.date}</td>
+				<td>{i.value}</td>
 				<td>
-					<button className='btn btn-warning' onClick={() => this.props.showUpdate(c)}>
+					<button className='btn btn-warning' onClick={() => this.props.showUpdate(bc)}>
 						<i className='fa fa-pencil'></i>
 					</button>
-					<button className='btn btn-danger' onClick={() => this.props.showDelete(c)}>
+					<button className='btn btn-danger' onClick={() => this.props.showDelete(bc)}>
 						<i className='fa fa-trash-o'></i>
 					</button>
 				</td>
@@ -33,12 +33,8 @@ class ClientList extends Component {
 				<table className='table'>
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Hour Value</th>
-							<th>Hour Fee</th>
-							<th>Hour Tax</th>
-							<th>Type Work</th>
-							
+							<th>Date</th>
+							<th>Value</th>							
 							<th className='tab-actions'> Actions </th>
 						</tr>
 					</thead>
@@ -52,6 +48,6 @@ class ClientList extends Component {
 }
 
 
-const mapStateToProps = state => ({ list: state.client.list })
+const mapStateToProps = state => ({ list: state.income.list })
 const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate, showDelete }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(ClientList)
+export default connect(mapStateToProps, mapDispatchToProps)(IncomeList)

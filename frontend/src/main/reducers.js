@@ -3,9 +3,8 @@ import {reducer as formReducer} from 'redux-form'
 import {reducer as toastReducer} from 'react-redux-toastr'
 import TabReducer from '../common/tab/tabReducer'
 import ExpenseReducer from '../expense/expenseReducer'
+import IncomeReducer from '../income/incomeReducer'
 import DashboardReducer from '../dashboard/dashboardReducer'
-import ClientReducer from '../clients/clientReducer'
-import JobReducer from '../job/jobReducer'
 
 
 
@@ -16,8 +15,7 @@ const rootReducer = combineReducers({
         form: formReducer,
         toastr: toastReducer,
         expense: ExpenseReducer,
-        client: ClientReducer,
-        job: JobReducer
+        income: IncomeReducer
 })
 
 export default rootReducer

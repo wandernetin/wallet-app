@@ -3,6 +3,8 @@ package com.wander.wallet.controller;
 import com.wander.wallet.service.GenericService;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin
 public class GenericRestController<T, X> {
 
     protected GenericService<T, X> genericService;

@@ -12,9 +12,9 @@ import java.text.ParseException;
 @RequestMapping("/expense")
 public class ExpenseController extends GenericRestController<Expense, Long>{
 
-    @Autowired
     private ExpenseService expenseService;
 
+    @Autowired
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService = expenseService;
         genericService = expenseService;

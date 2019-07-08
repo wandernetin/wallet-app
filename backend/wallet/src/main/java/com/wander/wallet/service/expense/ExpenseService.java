@@ -11,4 +11,6 @@ public interface ExpenseService extends GenericService <Expense, Long> {
 
     Double getTotalFromExpensesRecurrentForThisWeek();
 
+    Double getTotalFromThisMonth();
+
 }

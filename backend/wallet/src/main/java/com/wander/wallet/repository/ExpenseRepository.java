@@ -1,8 +1,6 @@
 package com.wander.wallet.repository;
 
-        import com.wander.wallet.domain.Client;
         import com.wander.wallet.domain.Expense;
-        import com.wander.wallet.domain.Job;
         import org.springframework.data.jpa.repository.Query;
         import org.springframework.data.repository.CrudRepository;
         import org.springframework.data.repository.query.Param;

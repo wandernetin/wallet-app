@@ -25,6 +25,11 @@ public class Expense {
     private Date date;
 
     @Column
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private Date dueDate;
+
+
+    @Column
     private CategoryEnum category;
 
     @Column
@@ -89,7 +94,11 @@ public class Expense {
         this.active = active;
     }
 
-    Expense() {
-        // jpa only
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 }

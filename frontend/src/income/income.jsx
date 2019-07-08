@@ -4,22 +4,21 @@ import { bindActionCreators } from 'redux'
 import { selectTab, showTabs } from '../common/tab/tabActions'
 
 
-import Form from './jobForm'
-import List from './jobList'
+import Form from './incomeForm'
+import List from './incomeList'
 import Tabs from '../common/tab/tabs'
 import TabsHeader from '../common/tab/tabsHeader'
 import TabsContent from '../common/tab/tabsContent'
+import tabsHeader from '../common/tab/tabsHeader';
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from '../common/tab/tabContent'
 
-import {init, create, update, remove } from './jobActions'
+import {init1, create, update, remove } from './incomeActions'
 
-
-
-class Job extends Component {
+class Income extends Component {
 
 	componentWillMount() {
-		this.props.init()
+		this.props.init1()
 	}
 
     render() {
@@ -57,8 +56,5 @@ class Job extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-	job: state.job
-})
-const mapDispatchToProps = dispatch => bindActionCreators({init, selectTab, showTabs, create, update, remove}, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Job)
+const mapDispatchToProps = dispatch => bindActionCreators({init1, selectTab, showTabs, create, update, remove}, dispatch)
+export default connect(null, mapDispatchToProps)(Income)
