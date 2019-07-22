@@ -31,17 +31,26 @@ public class DateUtil {
     }
 
     public static Date getFirstDayOfCurrentMonth() {
-        LocalDate firstDay = LocalDate.now();
-        firstDay.withDayOfMonth(1);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
 
-        return Date.from(firstDay.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        return cal.getTime();
     }
 
     public static Date getLastDayOfCurrentMonth() {
+        Date today = new Date();
 
-        LocalDate lastDay = LocalDate.now();
-        lastDay.withDayOfMonth(Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
 
-        return Date.from(lastDay.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+
+        return calendar.getTime();
     }
 }

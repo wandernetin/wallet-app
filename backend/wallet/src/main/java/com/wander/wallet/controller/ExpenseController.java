@@ -24,4 +24,9 @@ public class ExpenseController extends GenericRestController<Expense, Long>{
     public Double getExpensesFromThisWeek() throws ParseException {
         return expenseService.getTotalFromExpensesRecurrentForThisWeek();
     }
+
+    @RequestMapping(value="/summaryMonth", method = RequestMethod.GET)
+    public Double getCurrentMonthExpensesTotal() {
+        return expenseService.getTotalFromThisMonth();
+    }
 }
