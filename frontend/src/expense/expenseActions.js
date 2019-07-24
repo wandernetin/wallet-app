@@ -37,6 +37,7 @@ function submit (values, method) {
                         })
                         .catch( 
                                 e => {
+                                        console.log(e);
                                 e.response.data.errors.forEach(error => 
                                         toastr.error('Error', error))
                                 

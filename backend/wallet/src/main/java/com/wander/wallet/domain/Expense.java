@@ -1,8 +1,10 @@
 package com.wander.wallet.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +20,7 @@ public class Expense {
     private String description;
 
     @Column
+    @NotNull(message = "Value is required")
     private Double value;
 
     @Column

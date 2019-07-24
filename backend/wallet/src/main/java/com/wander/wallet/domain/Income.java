@@ -1,6 +1,7 @@
 package com.wander.wallet.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Income {
     private Date date;
 
     @Column
+    @NotBlank(message = "Value is required")
     private Double value;
 
     public Long getId() {
