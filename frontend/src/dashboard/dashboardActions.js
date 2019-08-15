@@ -18,3 +18,11 @@ export function getPaymentSummary() {
                 payload: request
         }
 }
+
+export function getLastExpenses() {
+        const request = axios.get(`${EXPENSE_BASE_URL}/last3expenses`);
+        return {
+                type: 'LAST_EXPENSES',
+                payload: request
+        }
+}
