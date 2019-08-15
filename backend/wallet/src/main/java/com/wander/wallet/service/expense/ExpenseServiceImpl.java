@@ -82,4 +82,9 @@ public class ExpenseServiceImpl implements ExpenseService {
         }
         return sum;
     }
+
+    @Override
+    public List<Expense> getLastExpenses() {
+        return expenseRepository.findLastExpense();
+    }
 }

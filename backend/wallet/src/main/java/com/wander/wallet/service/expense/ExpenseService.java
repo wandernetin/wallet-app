@@ -4,6 +4,7 @@ import com.wander.wallet.domain.Expense;
 import com.wander.wallet.service.GenericService;
 
 import java.util.Date;
+import java.util.List;
 
 public interface ExpenseService extends GenericService <Expense, Long> {
 
@@ -12,5 +13,7 @@ public interface ExpenseService extends GenericService <Expense, Long> {
     Double getTotalFromExpensesRecurrentForThisWeek();
 
     Double getTotalFromThisMonth();
+
+    List<Expense> getLastExpenses();
 
 }
