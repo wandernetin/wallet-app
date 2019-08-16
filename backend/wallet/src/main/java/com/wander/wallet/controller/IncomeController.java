@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/income")
 public class IncomeController extends GenericRestController<Income, Long> {
@@ -22,5 +24,10 @@ public class IncomeController extends GenericRestController<Income, Long> {
     @RequestMapping(value="/summaryMonth", method = RequestMethod.GET)
     public Double getCurrentMonthIncomeTotal() {
         return incomeService.getIncomeTotalThisMonth();
+    }
+
+    @RequestMapping(value="/lastIncomes", method = RequestMethod.GET)
+    public List<Income> getLastIncome() {
+        return incomeService.getLastIncomes();
     }
 }

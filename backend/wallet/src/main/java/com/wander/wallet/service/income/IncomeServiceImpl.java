@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class IncomeServiceImpl implements IncomeService {
@@ -50,5 +51,10 @@ public class IncomeServiceImpl implements IncomeService {
             sum += income.getValue();
         }
         return sum;
+    }
+
+    @Override
+    public List<Income> getLastIncomes() {
+        return incomeRespository.findLastIncome();
     }
 }
