@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getExpenseSummary, getPaymentSummary, getLastExpenses } from './dashboardActions'
+import './dashboard.css'
+
+import { getExpenseSummary, getPaymentSummary, getLastExpenses, getLastIncomes } from './dashboardActions'
 import ContentHeader from '../common/template/contentHeader'
 import Content from '../common/template/content'
 import ValueBox from '../common/widget/valueBox'
@@ -14,10 +16,22 @@ class Dashboard extends Component {
                 this.props.getExpenseSummary();
                 this.props.getPaymentSummary();
                 this.props.getLastExpenses();
+                this.props.getLastIncomes();
         }
 
-        rederRows() {
+        renderLastExpenses() {
                 const list = this.props.last3ExpensesList || []
+                return list.map(i => (
+                        <tr key={i.id}>
+                                <td>{i.date}</td>
+                                <td>{i.description}</td>
+                                <td>{i.value}</td>
+                        </tr>
+                ))
+        }
+
+        renderLastIncome() {
+                const list = this.props.lastIncomes || []
                 return list.map(i => (
                         <tr key={i.id}>
                                 <td>{i.date}</td>
@@ -42,8 +56,24 @@ class Dashboard extends Component {
                                                         value={`AUD$ ${credit - debt}`} text='Consolided Total' />
                                         </Row>
                                         <Row>
-                                                Last 3 expenses.
-                                        <div>
+                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 listDashboard">
+                                                        <h3>Last 3 expenses</h3>
+                                                        <table className='table'>
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>Date</th>
+                                                                                <th>Description</th>
+                                                                                <th>Value</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        {this.renderLastExpenses()}
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                       
+                                                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 listDashboard">
+                                                <h3>Last 3 incomes</h3>
                                                         <table className='table'>
                                                                 <thead>
                                                                         <tr>
@@ -52,7 +82,7 @@ class Dashboard extends Component {
                                                                         </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                        {this.rederRows()}
+                                                                        {this.renderLastIncome()}
                                                                 </tbody>
                                                         </table>
                                                 </div>
@@ -66,7 +96,13 @@ class Dashboard extends Component {
 const mapStateToProps = state => ({
         summary: state.dashboard.summary,
         summaryPayment: state.dashboard.summaryPayment,
-        last3ExpensesList: state.dashboard.last3ExpensesList
+        last3ExpensesList: state.dashboard.last3ExpensesList,
+        lastIncomes: state.dashboard.lastIncomes
 })
-const mapDispatchToProps = dispatch => bindActionCreators({ getExpenseSummary, getPaymentSummary, getLastExpenses }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ 
+        getExpenseSummary, 
+        getPaymentSummary, 
+        getLastExpenses,
+        getLastIncomes, 
+}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

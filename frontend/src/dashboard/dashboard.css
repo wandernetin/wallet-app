@@ -1,0 +1,15 @@
+.listDashboard {
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #666;
+    font-size: 16px;
+}
+
+.listDashboard h3 {
+    color: #DF4723;
+    text-align: center;
+
+}

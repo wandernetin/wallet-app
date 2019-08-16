@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
         summary: {credit: 0, debt: 0},
-        last3ExpensesList: []
+        last3ExpensesList: [],
+        lastIncomes: [],
                         
 }
 
@@ -12,6 +13,8 @@ export default function(state = INITIAL_STATE, action) {
                        return { ...state, summaryPayment: action.payload.data}
                 case 'LAST_EXPENSES' :
                         return { ...state, last3ExpensesList: action.payload.data };
+                case 'LAST_INCOMES' :
+                        return { ...state, lastIncomes: action.payload.data };
                 default:
                         return state;
         }

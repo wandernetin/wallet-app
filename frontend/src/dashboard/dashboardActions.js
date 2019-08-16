@@ -26,3 +26,11 @@ export function getLastExpenses() {
                 payload: request
         }
 }
+
+export function getLastIncomes() {
+        const request = axios.get(`${PAYMENT_BASE_URL}/lastIncomes`);
+        return {
+                type: 'LAST_INCOMES',
+                payload: request
+        }
+}
